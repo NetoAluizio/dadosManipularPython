@@ -1,0 +1,49 @@
+## Manipulação de dados:
+
+ # Wide to Long -> Redução de número de colunas:
+	dataframeLong = pd.melt(dataframe, ignoreIndex = False)
+	obs.: o (ignoreIndex = False) é para manter o index(1ª coluna)
+
+ # Filtros Adicionais:
+	isin - que tenha/ele está:
+	 Ex.: 
+	 dataframePesquisada = ['item1', 'item2', 'item3']
+	 dataframePesqFiltro = dataframe[dataframe.nomeDaColuna.isin(dataframePesquisada)]
+
+	~...isin - exclusão:
+	 Ex.:
+	 dataframePesquisada = ['item1', 'item2', 'item3']
+	 dataframePesqFiltro = dataframe[~dataframe.nomeDaColuna.isin(dataframePesquisada)]
+	
+	date_range - filtra por intervalo de datas:
+	 Ex.: 
+	 dataframe = pd.date_range(start = 'data inicial', end = 'data final')
+
+	.replace - substituição de dados:
+	 Ex.: 
+	 dataframe.replace(to_replace = r'Tirar$', value = 'Colocar', regex = True)
+	 Obs.: 
+	  A letra 'r' indica que tem que ser literal, igual ao escrito, idêntico;
+	  O '$' indica que não deve ter nada depois do termo a ser tirado;
+	  Caso fosse '^', indicaria que ná deve haver nada na frente;
+	  
+	.duplicate() - verifica se tem dados duplicados, quais são duplicadas, linha por linha. Retorna bool.
+
+	.any() - retorna True se houver algum dado duplicado.
+	
+	Acessar index: dataframe.index
+	
+	Transformar data em formato str para data:
+	 pd.to_datetime('data em formato str')
+
+ # Drop - Remover linhas ou colunas específicas:
+	.drop():
+	 Ex.:
+	 * Remover linhas:
+	 dataframe.drop([index1, index2, ..., indexN])	
+	   obs.: Não se usa o 'axis', pois como padrão ele vem axis = 0 (lihas).
+	
+	* Remover colunas:
+	 dataframe.drop([coluna1, coluna2, ..., colunaN], axis = 1)
+	  ou
+	 dataframe.drop(dataframe.columns[0, 1, ..., N], axis = 1)

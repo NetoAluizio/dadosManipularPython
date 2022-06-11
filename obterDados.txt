@@ -1,0 +1,27 @@
+## Obtenção de Dados:
+
+ # Bibliotecas:
+import matplotlib.pyplot as plt;
+import plotly.graph_objects as go;
+import yfinance as yf;
+import quandl.
+
+ # Yfinance:
+  - Estração de um ativo:
+     yf.download("ATIVO.SA", start='data inicial', end='data final', period = "período").
+  - Dados sobre o papel:
+     ativo = yf.Ticker('ATIVO.SA').
+     ativo.info
+  - Histórico de divendos e splits:
+     ativo.actions
+
+ # Quandl - Extração via API:
+  - Uso de chave:
+     quandl.ApiConfig.api_key = "sua chave"
+  - Dados Índice Qualquer:
+     indiceQualquer = quandl.get("código do indice no quandl", start_date="data inicial", end_date="data final")
+     plt.figure(figsize=(10,10))
+     plt.plot(indiceQualquer)
+     plt.show
+	ou
+     indiceQualquer = quandl.get("código do indice no quandl", start_date="data inicial", end_date="data final").plot()

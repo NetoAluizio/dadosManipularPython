@@ -1,0 +1,53 @@
+## Agregar dados:
+
+ # Count - contar células que não são NAs:
+	dataframe.count()
+
+ # Unique - retorna array com valores do dataframe:
+	dataframe.Coluna.unique()
+ 
+ # Concat - concatenar dataframes e reorganozar colunas:
+	pd.concat([df, df1, ..., dfn], axix = 1)
+
+ # Binning - Criar coluna com um dado em específico (ex.: positivo ou negativo):
+	dataframe['Nome da Coluna Nova'] = variavelBin
+
+ # Crosstab - Tabela cruzada (análise de frequência de ocorrências):
+	pd.crosstab(dataframe['coluna de referência'], dataframe['coluna de resultados'])
+
+ # Pivot Table - Consolidação de dados:
+	pd.pivot_table(dataframe, values = 'coluna de análise', index = ['coluna de referência'],
+		columns = [], aggfunc = medidaEstatistica)
+
+ # Group by - Agrupar variáveis:
+	dataframe.groupby(['coluna1', 'coluna2', 'colunaN']).funcaoEstatistica()
+	 ou
+	filtro.groupby(['coluna1', 'coluna2', 'colunaN']).funcaoEstatistica()
+	
+	 Obs.: Para ordenar o novo df: 
+		acrescenta no final da declaração: .sort_values(by = 'coluna')
+
+ # Merge (join) - Unir dois DF diferentes.
+	 Tipos de join:
+	   inner - comum aos dois dfs;
+	   right - comum aos dois + df2;
+	   left - comum aos dois + df1;
+	   outer - os dois dfs completos.
+	pd.merge(df1, how = 'tipo de join', on = 'dado de referência')
+
+
+ # Observações:
+	* Df com index em datas -> mudar index para dias da semana:
+	   dfNovo = pd.to_datetime(dataframe.index).strftime('%A')
+	* Inserir esse novo index como outra coluna:
+	   dataframe.insert(0, 'dfNovo', dfNovo)
+	*Matplotlib:
+	   import matplotlib.pyplot as plt
+	   y = coluna.index
+	   x = coluna.Coluna
+	   # Inicializar a figura e os eixos:
+		fig, ax = plt.subplots()
+	   # Fig size:
+		fig.set_size_inches(largura, altura)
+	   # Criar as barras horizontais:
+		ax.barh(y=y, width = x)
